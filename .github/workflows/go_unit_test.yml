@@ -1,0 +1,20 @@
+name: go unit test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  go_unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+      - name: Run coverage
+        run: go test ./... -coverpkg=./... -race -coverprofile=coverage.out -covermode=atomic
