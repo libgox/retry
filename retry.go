@@ -20,7 +20,7 @@ func Do(fn func() error, strategy Strategy) error {
 	}
 }
 
-func MustDo(fn func() error, strategy Strategy) {
+func Must(fn func() error, strategy Strategy) {
 	if err := Do(fn, strategy); err != nil {
 		panic(err)
 	}
